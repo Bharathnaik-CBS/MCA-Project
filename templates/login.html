@@ -1,0 +1,150 @@
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Login Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #2b1055, #7597de);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Arial", sans-serif;
+    }
+
+    .login-container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 2rem;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    @media screen and (min-width: 300px) and (max-width: 500px) {
+      .login-container {
+        width: 90%;
+        padding: 4%;
+      }
+      
+    }
+
+    .login-container input {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #fff;
+      color: #fff;
+      width: 100%;
+      margin-bottom: 1.5rem;
+      padding-left: 7px;
+    }
+
+    .login-container input:focus {
+      outline: none;
+      border-bottom: 1px solid #fff;
+    }
+
+    .login-container label {
+      color: #fff;
+    }
+
+    .login-container .checkbox-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+
+    .login-container .checkbox-container a {
+      color: #b3b3b3;
+      text-decoration: none;
+    }
+
+    .login-container .login-button {
+      background: linear-gradient(135deg, #ff0844, #ffb199);
+      border: none;
+      border-radius: 30px;
+      color: #fff;
+      padding: 0.75rem;
+      width: 100%;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .login-container .login-button:hover {
+      background: linear-gradient(135deg, #ffb199, #ff0844);
+    }
+
+    #error-box {
+      background-color: black;
+      border: 1px solid red;
+      color: rgb(138, 1, 1);
+      display: none;
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    input{
+      align-self: baseline;
+    }
+
+
+    .forgot:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-container">
+    <div class="flex justify-center mb-6">
+      <i class="fas fa-user-circle text-white text-6xl" ></i>
+    </div>
+
+    <form method="POST" action="/">
+
+      <div class="mb-4">
+        <label class="sr-only" for="admin">Admin Login</label>
+        <div class="flex items-center">
+          <i class="fas fa-user-shield text-white mr-2 mb-5"></i>
+          <input id="admin" name="username" placeholder="Admin Login" required="" type="text" />
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="sr-only" for="password">Password</label>
+        <div class="flex items-center">
+          <i class="fas fa-lock text-white mr-2 mb-5"></i>
+          <input id="password" name="password" placeholder="Password" required="" type="password" />
+        </div>
+      </div>
+      
+      <div class="checkbox-container ml-5 forgot">
+        <a href="forgot-password">Forgot Password?</a>
+      </div>
+      <button class="login-button" type="submit">LOGIN</button>
+    
+    </form>
+
+    <div id="error-box">
+      Wrong admin username or password. Retrying in
+      <span id="countdown">3</span>...
+    </div>
+  </div>
+
+  {% if error %}
+  <script>
+    displayErrorMessage();
+  </script>
+  {% endif %}
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+
+<!-- templates/verify_otp.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Verify OTP</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    form { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
+    input { width: 84%; margin-top: 10px; padding: 10px; }
+    button { width: 90%; margin-top: 10px; padding: 10px; }
+    .flash { color: red; text-align: center; }
+  </style>
+</head>
+<body>
+  <h2 style="text-align: center;">Verify OTP</h2>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash">
+        {% for category, message in messages %}
+          <p class="{{ category }}">{{ message }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+  <form action="/verify-otp" method="POST">
+    <label for="otp">Enter the OTP sent to your email:</label>
+    <input type="text" name="otp" maxlength="6" required>
+    <button type="submit">Verify</button>
+  </form>
+  <script>
+    // Countdown timer (optional)
+    let countdown = 300; // 5 minutes
+    const timer = setInterval(() => {
+      if (--countdown <= 0) {
+        clearInterval(timer);
+        alert("OTP expired. Please request again.");
+        window.location.href = "/forgot-password";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>

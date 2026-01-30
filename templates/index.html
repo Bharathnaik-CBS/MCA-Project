@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f4f7fa;
+      color: #333;
+    }
+
+    /* Header */
+    header {
+      background-color: #004d7a;
+      width: 93.5%;
+      justify-self: center;
+      color: white;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-around;
+      padding: 5px 40px;
+      border-radius: 10px;
+      box-shadow: 1px 1px 10px 1px gray;
+      position: fixed;
+      border: 2px solid black;
+      
+    }
+
+    header h1 {
+      font-size: 24px;
+    }
+
+    .container {
+      width: 100%;
+      display: flex;
+      height: auto;
+      margin-top: 10px;
+    }
+
+
+
+
+
+    /* Sidebar */
+    .sidebar {
+      margin-top: 6%;
+      height: 84.4vh;
+      width: 13.5%;
+      background-color: #002f4b;
+      color: #fff;
+      border-radius: 10px;
+      box-shadow: 1px 1px 10px 1px gray;
+      position: fixed;
+      border: 1px solid black;
+    }
+
+    .sidebar button {
+      margin: 5px 0px;
+      color: #fff;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 12px 20px;
+      border-radius: 20px;
+      background-color: #002f4b;
+      border-style: none;
+      font-size: 15px;
+      transition: background 0.3s;
+    }
+
+    .sidebar button:hover {
+      background-color: #005f73;
+      color: #fff;
+    }
+
+    .sidebar i {
+      margin-right: 10px;
+    }
+
+    .sidebar a {
+      margin: 5px 0px;
+      color: #fff;
+      width: 80%;
+      display: flex;
+      align-items: center;
+      padding: 12px 20px;
+      border-radius: 20px;
+      background-color: #002f4b;
+      border-style: none;
+      font-size: 15px;
+      transition: background 0.3s;
+      text-decoration: none;
+    }
+
+    .sidebar a:hover {
+      background-color: #005f73;
+      color: #fff;
+    }
+
+
+
+
+
+    /* Main Content */
+    .main-content {
+      min-height: 78.5vh;
+      flex: 1;
+      padding: 5px 20px;
+      background-color: #fff;
+      margin-top: 6.1%;
+      margin-left: 14.3%;
+      border-radius: 20px;
+      box-shadow: 1px 1px 10px 1px gray;
+    }
+
+    .main-content h2 {
+      color: #004d7a;
+      margin-bottom: 10px;
+    }
+
+    .card {
+      background: #e6f1f5;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .all-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 50%;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .form-group input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .form-column {
+      min-width: 300px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .all-form select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+
+    .btn-submit {
+      background-color: #004d7a;
+      color: white;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-submit:hover {
+      background-color: #006494;
+    }
+
+    .main-content-wrapper>div {
+      display: none;
+    }
+
+    .main-content-wrapper>div.active {
+      display: block;
+    }
+
+    .transaction-form {
+      justify-content: center;
+      width: 90%;
+      display: flex;
+      gap: 10px;
+
+
+    }
+
+    .transaction-form select {
+      width: 40%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+
+      border-radius: 5px;
+    }
+
+    .trans-card {
+      background: #e6f1f5;
+      padding: 20px;
+      border-radius: 10px;
+      display: flex;
+
+
+    }
+
+    .transaction-form input {
+      width: 40%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+
+      border-radius: 5px;
+
+    }
+
+
+
+    .trans-btn {
+      background-color: #004d7a;
+      color: white;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+
+    /* chart style */
+
+
+    .compact-table {
+      font-size: 12px;
+      margin-top: 10px;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .compact-table th,
+    .compact-table td {
+      border: 1px solid #ddd;
+      padding: 4px 6px;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+    }
+
+
+    .chart-buttons button {
+      background-color: #007a14;
+      color: white;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .chart-buttons button:hover {
+      background-color: #00510e;
+      border: 2px solid black;
+    }
+
+
+
+
+    .footer {
+      text-align: center;
+      background-size: auto;
+      background-color: #d3d3d3;
+      border-radius: 6px;
+      color: #333333;
+      padding: 5px 10px;
+      width: 100%;
+
+      margin: 10px auto;
+      font-size: 14px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+    /* charts style */
+    #date-controls {
+      margin: 20px auto;
+      padding: 10px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      width: 50%;
+    }
+
+    #date-controls label{
+      text-align: center;
+    }
+
+    /* 🧱 2-column responsive layout */
+    .charts-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-around;
+      padding-bottom: 20px;
+    }
+
+    .chart-container {
+      display: flex;
+      flex-direction: column;
+      width: 45%;
+      /* 2 charts per row with some spacing */
+      background: #ffffff;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    canvas {
+      width: 100% !important;
+      height: 320px !important;
+      /* shorter height */
+    }
+
+    button#update-all {
+      padding: 6px 12px;
+      align-self:self-end;
+      background-color: #007bff;
+      color: white;
+      margin-bottom: 2px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button#update-all:hover {
+      background-color: #0056b3;
+    }
+
+    /* 📱 On small screens, stack charts */
+    @media (max-width: 768px) {
+      .chart-container {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+
+
+</head>
+
+<body>
+  <header>
+    <h1><i class="fas fa-chart-line"></i> Employee Performance Tracker</h1>
+    <h5>Koravi Developers & Builders</h5>
+  </header>
+
+  <div class="container">
+    <div class="sidebar" style="border: 2px solid black ;">
+      <button onclick="showSection('dashboard')">
+        <i class="fas fa-dashboard"></i> Dashboard
+      </button>
+      <button onclick="showSection('employee')">
+        <i class="fas fa-user"></i> Employee
+      </button>
+      <button onclick="showSection('project')">
+        <i class="fas fa-project-diagram"></i> Project Entry
+      </button>
+      <button onclick="showSection('plot')">
+        <i class="fas fa-map"></i> Plots
+      </button>
+      <button onclick="showSection('transaction')">
+        <i class="fas fa-hand-holding-usd"></i> Transactions
+      </button>
+      <button onclick="showSection('customer')">
+        <i class="fas fa-users"></i> Customer Entry
+      </button>
+      <button onclick="showSection('booking')">
+        <i class="fas fa-calendar-check"></i> Booking
+      </button>
+
+      <a href="{{ url_for('form_bp.change_password') }}"> <i class="fas fa-lock"></i> Change Password</a>
+
+    </div>
+  </div>
+
+  <div class="main-content-wrapper">
+    <!-- wrapper starts here -->
+
+
+
+
+    <!-- dashboard -->
+    <div class="main-content active" id="dashboard" style="border: 2px solid black ;">
+
+
+
+
+
+      <!-- Multiple in one screen -->
+      <!-- 📅 Date Controls -->
+      <div id="date-controls">
+        <label>Start Date: <input type="date" id="global-start"></label>
+        <label>End Date: <input type="date" id="global-end"></label>
+        <button id="update-all">Update All</button>
+      </div>
+
+      <!-- 🧱 Charts -->
+      <div class="charts-wrapper">
+        <div class="chart-container">
+          <h4>Overall Analytics</h4>
+          <p id="overall-loading" style="display: none;">Loading overall data...</p>
+          <canvas id="overallChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+          <h4>Project-Wise Analytics</h4>
+          <p id="project-loading" style="display: none;">Loading project data...</p>
+          <canvas id="projectChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+          <h4>Employee-Wise Analytics</h4>
+          <p id="employee-loading" style="display: none;">Loading employee data...</p>
+          <canvas id="employeeChart"></canvas>
+        </div>
+
+        <div class="chart-container" style="width: 363px; padding: 0% 10%;">
+          <h4>Platform-Wise Analytics</h4>
+          <p id="platform-loading" style="display: none;">Loading platform data...</p>
+          <canvas id="platformChart" style="width: 800px; max-height: 400px;"></canvas>
+        </div>
+
+        
+      </div>
+
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+      <script src="{{ url_for('static', filename='dashboard-charts.js') }}" defer></script>
+
+      <!-- Multiple in one screen ends here-->
+
+
+    </div>
+    <!-- dashboard ends-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- employee -->
+
+    <div class="main-content" id="employee">
+      <h2>Employee Entry Form</h2>
+      <div class="card">
+        <form id="employeeForm" method="POST" action="/add-employee" class="all-form">
+          <div class="form-group">
+            <label for="empId">Employee ID:</label>
+            <input type="text" name="e_id" required />
+          </div>
+
+          <div class="form-group">
+            <label for="empName">Employee Name:</label>
+            <input type="empName" id="empName" name="e_name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="empPhone">Phone Number:</label>
+            <input type="tel" id="empPhone" name="p_no" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+
+          <div class="full-width">
+            <button type="submit" class="btn-submit">Submit</button>
+          </div>
+        </form>
+
+        <p id="error-msg" style="color: red; margin-top: 10px"></p>
+      </div>
+    </div>
+
+    <!-- Error Message Box -->
+
+    <!-- JS Script -->
+    <script src="{{ url_for('static', filename='employee.js') }}?v=1.2"></script>
+
+    <!-- employee ends -->
+
+
+
+
+
+
+
+
+    <!-- project -->
+
+    <div class="main-content" id="project">
+      <h2>Project Entry Form</h2>
+      <div class="card" style="margin-bottom: 30px;">
+        <form id="projectForm" action="/add-project" method="POST" class="all-form">
+          <div class="form-group">
+            <label for="project_id">Project ID:</label>
+            <input type="text" id="pro_id" name="pro_id" required />
+
+            <label for="project_name">Project Name:</label>
+            <input type="text" id="pro_name" name="pro_name" required />
+
+            <label for="area">Area:</label>
+            <input type="text" id="area" name="area" required />
+
+            <label for="landmark">Landmark:</label>
+            <input type="text" id="landmark" name="landmark" required />
+
+            <label for="taluk">Taluk:</label>
+            <input type="text" id="taluk" name="taluk" required />
+
+            <label for="district">District:</label>
+            <input type="text" id="district" name="district" required />
+
+            <label for="Pin_code">Pin Code</label>
+            <input type="text" id="Pincode" name="PinCode" required />
+
+            <label for="status">Status:</label>
+            <select id="status" name="status" required>
+              <option value="development">Development</option>
+              <option value="completed">Completed</option>
+            </select>
+
+            <label for="total_plots">Total Plots:</label>
+            <input type="number" id="total_plots" name="total_plots" required />
+          </div>
+
+          <div class="full-width">
+            <button type="submit" class="btn-submit">Submit</button>
+          </div>
+        </form>
+
+        <p id="project-error-msg" style="color: red; margin-top: 10px"></p>
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='project_form.js') }}?v=1.2"></script>
+
+    <!-- project ends -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Plot -->
+    <div class="main-content" id="plot">
+      <h2>Plot Entry Form</h2>
+      <div class="card" style="margin-bottom: 30px;">
+        <form id="plotForm" action="/add-plot" method="POST" class="all-form">
+          <label for="Plot no">Plot No:</label>
+          <input type="text" name="plot_no" required />
+
+          <label for="Project id">Project ID:</label>
+          <select id="proIdSelect" name="pro_id" required></select>
+
+          <label for="project_name">Project Name:</label>
+          <select id="proNameSelect"></select>
+
+          <label for="plot size">Plot Size:</label>
+          <input type="text" name="plot_size" required />
+
+          <label for="plot-status">PLot Status</label>
+          <select id="status" name="plot_status" required>
+            <option value="development">Development</option>
+            <option value="completed">Completed</option>
+          </select>
+
+          <div class="full-width">
+            <button type="submit" class="btn-submit">Submit</button>
+          </div>
+        </form>
+
+        <p id="plot-error-msg" style="color: red; margin-top: 10px"></p>
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='plot_form.js') }}?v=1.2"></script>
+
+    <!-- plot ends -->
+
+
+
+
+
+
+
+
+
+
+    <!-- transaction -->
+    <div class="main-content" id="transaction">
+      <h2>Daily Entry Form</h2>
+      <button id="showTransaction" type="button" class="trans-btn">Transaction Form</button>
+      <button id="showEntries" type="button" class="trans-btn">Entries Form</button>
+
+
+
+      <div class="trans-card" style="margin-bottom: 30px;">
+        <!-- Transaction Form -->
+        <form id="transactionForm" action="/add-transaction" method="POST" class="transaction-form"
+          style="display: none">
+          <div class="form-group">
+            <label for="transaction-id">Transaction ID</label>
+            <input type="number" id="transaction-id" name="t_id" required readonly />
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required />
+
+            <label for="emp_id">Employee ID</label>
+            <select id="emp_id" name="emp_id" required></select>
+
+            <label for="emp_name">Employee Name</label>
+            <select id="emp_name"></select>
+
+            <label for="project_id">Project ID</label>
+            <select id="project_id" name="project_id" required></select>
+
+            <label for="project_name">Project Name</label>
+            <select id="project_name"></select>
+
+            <br />
+            <div class="full-width">
+              <button type="submit" class="btn-submit">Submit</button>
+            </div>
+          </div>
+        </form>
+        <div id="transactionForm_msg"></div>
+
+
+
+
+
+        <!-- Entries Form -->
+        <form id="entriesForm" action="/add-entry" method="POST" class="transaction-form" style="display: none">
+          <div class="form-column">
+            <label for="entry-transaction-id">Transaction ID</label>
+            <input type="number" id="entry-transaction-id" name="trans_id" required />
+            
+            <label for="platform_id">Platform ID</label>
+            <select id="platform_id" name="platform_id" required></select>
+
+            <label for="platform_type">Platform Type</label>
+            <select id="platform_type"></select>
+
+            <label for="bulk_leads">Bulk Leads:</label>
+            <input type="number" id="bulk_leads" name="bulk_leads_reach" required />
+
+            <label for="incoming">Incoming:</label>
+            <input type="number" id="incoming" name="incoming" required />
+
+            <label for="outgoing">Outgoing:</label>
+            <input type="number" id="outgoing" name="outgoing" required />
+
+            <label for="interest">Interest:</label>
+            <input type="number" id="interest" name="interest" required />
+
+            <label for="not_interested">Not Interested:</label>
+            <input type="number" id="not_interested" name="not_interest" required />
+
+            <label for="not_pick">Not Picked the Call:</label>
+            <input type="number" id="not_pick" name="not_pick_the_call" required />
+
+            <label for="visit_set">Visit Set:</label>
+            <input type="number" id="visit_set" name="visit_set" required />
+
+            <label for="site_visit">Site Visit:</label>
+            <input type="number" id="site_visit" name="site_visit" required />
+
+            <label for="yesterday_visit">Yesterday Visit Complete:</label>
+            <input type="number" id="yesterday_visit" name="yesterday_visit_completed" required />
+
+            <label for="unplanned_today_visit_completed">Unplanned Today Visit Completed</label>
+            <input type="number" id="unplanned_today_visit_completed" name="unplanned_today_visit_completed" required />
+
+            <label for="block">Block:</label>
+            <input type="number" id="block" name="block" required />
+
+            <label for="book">Book:</label>
+            <input type="number" id="book" name="book" required />
+
+            <label for="visit_cancel">Visit Cancel:</label>
+            <input type="number" id="visit_cancel" name="visit_cancel" required />
+
+            <div class="full-width">
+              <button type="submit" class="btn-submit">Submit</button>
+            </div>
+          </div>
+        </form>
+        <div id="entriesForm_msg"></div>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='form-handler.js') }}?v=1.2"></script>
+
+    <!-- transaction ends -->
+
+
+
+
+
+
+    <!-- customer -->
+
+    <div class="main-content" id="customer">
+      <h2>Customer Entry Form</h2>
+      <div class="card">
+        <form id="customerForm" action="/add-customer" method="POST" class="all-form">
+          <div class="form-group">
+            <label for="cust_name">Customer Name:</label>
+            <input type="text" id="cust_name" name="cust_name" required />
+
+            <label for="phone_no">Phone Number:</label>
+            <input type="tel" id="phone_no" name="phone_no" required />
+
+            <label for="id_type">ID Type:</label>
+            <select id="id_type" name="id_type" required>
+              <option value="aadhar">Aadhar</option>
+              <option value="voter_id">Voter ID</option>
+              <option value="pan_card">PAN Card</option>
+              <option value="driver_license">Driver License</option>
+              <option value="others">Others</option>
+            </select>
+
+            <label for="personal_id">Personal ID:</label>
+            <input type="text" id="personal_id" name="personal_id" />
+
+            <label for="cust_type">Customer Type:</label>
+            <select id="cust_type" name="cust_type" required>
+              <option value="new">New</option>
+              <option value="old">Old</option>
+            </select>
+          </div>
+
+          <div class="full-width">
+            <button type="submit" class="btn-submit">Submit</button>
+          </div>
+        </form>
+
+        <p id="customer-error-msg" style="color: red; margin-top: 10px"></p>
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='customer_form.js') }}?v=1.2"></script>
+
+    <!-- customer ends -->
+
+
+
+
+
+
+    <!-- booking -->
+
+    <div class="main-content" id="booking">
+      <h2>Booking Entry Form</h2>
+      <div class="card" style="margin-bottom: 30px;">
+        <form class="all-form">
+          <div class="form-group">
+            <label for="booking_id">Booking ID:</label>
+            <input type="text" id="booking_id" name="booking_id" required />
+
+            <label for="cust_id">Customer ID:</label>
+            <input type="text" id="cust_id" name="cust_id" required />
+
+            <label for="project_id">Project ID:</label>
+            <input type="text" id="project_id" name="project_id" required />
+
+            <label for="plot_no">Plot No:</label>
+            <input type="text" id="plot_no" name="plot_no" required />
+
+            <label for="booking_date">Booking Date:</label>
+            <input type="date" id="booking_date" name="booking_date" required />
+
+            <label for="booking_type">Booking Type:</label>
+            <select id="booking_type" name="booking_type" required>
+              <option value="book">Book</option>
+              <option value="block">Block</option>
+            </select>
+
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" required />
+          </div>
+
+          <div class="full-width">
+            <button type="submit" class="btn-submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- booking ends -->
+
+    <!-- wrapper ends her-->
+  </div>
+
+  <footer>
+    <div class="footer">
+      <p>&copy; CHETAN BUSINESS SCHOOL - HUBLI, THE BYTE RIDERS - 2025.</p>
+    </div>
+  </footer>
+
+
+
+
+
+
+  <script>
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll(
+        ".main-content-wrapper > div"
+      );
+      sections.forEach((div) => div.classList.remove("active"));
+      document.getElementById(sectionId).classList.add("active");
+    }
+  </script>
+</body>
+
+</html>
